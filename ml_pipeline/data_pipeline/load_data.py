@@ -1,7 +1,7 @@
 import boto3
 from botocore.client import Config
-from data_pipeline.config import ACCESS_KEY, SECRET_KEY, ENDPOINT_URL, BUCKET_NAME, REGION_NAME
 from io import BytesIO
+from .config import ACCESS_KEY, SECRET_KEY, ENDPOINT_URL, BUCKET_NAME, REGION_NAME
 
 def get_s3_client():
     return boto3.client(
@@ -14,22 +14,9 @@ def get_s3_client():
     )
 
 def list_audio_files(s3_client):
-    """
-    Lists all .flac audio files in the bucket.
-    """
     response = s3_client.list_objects_v2(Bucket=BUCKET_NAME)
-    contents = response.get("Contents", [])
-    return [obj["Key"] for obj in contents if obj["Key"].endswith(".flac")]
+    return [obj["Key"] for obj in response.get("Contents", []) if obj["Key"].endswith(".flac")]
 
-def fetch_audio_stream(s3_client, key: str) -> BytesIO:
-    """
-    Fetches an audio file from R2 as an in-memory BytesIO stream.
-
-    Args:
-        key (str): The object key in the bucket.
-
-    Returns:
-        BytesIO stream of the file contents.
-    """
+def fetch_audio_stream(s3_client, key):
     response = s3_client.get_object(Bucket=BUCKET_NAME, Key=key)
-    return BytesIO(response["Body"].read())
+    return BytesIO(response['Body'].read())

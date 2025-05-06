@@ -43,8 +43,6 @@ exceptiongroup==1.2.2
 fastapi==0.115.12
 fastparquet==2024.11.0
 filelock==3.18.0
-flyteidl==1.15.3
-flytekit==1.15.4
 frozenlist==1.6.0
 fsspec==2025.3.2
 gcsfs==2025.3.2

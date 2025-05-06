@@ -1,0 +1,18 @@
+{
+    "total_files": 999,
+    "total_duration_sec": 3704.73,
+    "average_duration_sec": 3.71,
+    "sampling_rate_distribution": {
+        "48000": 999
+    },
+    "transcription_lengths": {
+        "min": 12,
+        "max": 180,
+        "avg": 43.85
+    },
+    "token_counts": {
+        "min": 20,
+        "max": 999,
+        "avg": 504.39
+    }
+}
